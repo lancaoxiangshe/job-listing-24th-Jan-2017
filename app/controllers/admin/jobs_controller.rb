@@ -28,6 +28,7 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
     if @job.update(job_params)
       redirect_to admin_jobs_path
+    else
     render :edit
   end
 end
