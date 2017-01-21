@@ -1,12 +1,12 @@
-<div class="pull-right">
-  <%= link_to("Add a job", new_admin_job_path, :class => "btn btn-primary") %>
+<div class="pull-right" style="margin-top:25px">
+  <%= link_to("Add a job", new_admin_job_path, :class => "btn btn-info") %>
 </div>
 
 <br><br>
 
 <table class="table table-boldered table-striped custab">
-   <thead>
-       <tr>
+   <thead bgcolor="#455A64">
+       <tr style="color:white">
          <td>
            职缺
          </td>
@@ -49,7 +49,7 @@
 
     </td>
     <td>
-      <%= job.created_at %>
+     <%= local_time(job.created_at, '%B %e, %Y') %>
     </td>
   </tr>
   <% end %>

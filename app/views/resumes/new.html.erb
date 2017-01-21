@@ -1,10 +1,11 @@
-<h3> 投交履历到 <%= @job.title %> </h3>
+<h3 style="color:#0086b3"> 投交履历到  <span class="glyphicon glyphicon-hand-right" ></span> <%= @job.title %> </h3>
+
 
 <hr>
 
 <%= simple_form_for [@job, @resume] do |f| %>
   <%= f.input :content %>
   <%= f.input :attachment %>
-  
-  <%= f.submit "送出" %>
+
+  <%= f.submit "发送" %>
 <% end %>
