@@ -3,7 +3,8 @@ class JobsController < ApplicationController
   before_action :validate_search_key, only: [:search]
 
   def index
-
+    @q = Job.search(params[:q])
+    @jobs = @q.result(distinct: true)
     @jobs = case params[:order]
             when 'by_lower_bound'
               Job.published.order("wage_lower_bound DESC")
@@ -59,15 +60,16 @@ class JobsController < ApplicationController
       if @query_string.present?
         search_result = Job.ransack(@search_criteria).result(:distinct => true)
         @jobs = search_result.paginate(:page => params[:page], :per_page => 20 )
+      else
+        redirect_to jobs_path
       end
     end
 
 
-    protected
+protected
 
     def validate_search_key
       @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
-      @search_criteria = search_criteria(@query_string)
     end
 
 
